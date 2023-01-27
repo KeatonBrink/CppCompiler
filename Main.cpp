@@ -14,4 +14,5 @@ int main()
             continueRead = false;
         }
     }
+    return 0;
 }
