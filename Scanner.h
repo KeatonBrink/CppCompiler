@@ -3,6 +3,8 @@
 #include "StateMachine.h"
 #include <fstream>
 #include <iostream>
+// Included to use replace_if for removing whitespace
+#include <algorithm>
 
 class ScannerClass
 {

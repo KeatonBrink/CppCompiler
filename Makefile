@@ -1,6 +1,8 @@
 CXXFLAGS := -std=c++11
 # extra tough syntax error and bad code style warning checking
 CXXFLAGS := $(CXXFLAGS) -Wall -Wpedantic -Wextra -Werror
+# gdb inclusion
+CXXFLAGS := $(CXXFLAGS) -g
 
 all: testTok testScanner
 
@@ -30,4 +32,5 @@ Token.o: Token.cpp Token.h
 clean:
 	-rm -f testScanner
 	-rm -f testTok
+	-rm -f tester
 	-rm -f *.o

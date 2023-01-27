@@ -2,7 +2,7 @@
 
 int main()
 {
-    std::string myCodeName;
+    std::string myCodeName = "P1Code.txt";
     ScannerClass scanner(myCodeName);
     TokenClass curTok;
     for (bool continueRead = true; continueRead;)

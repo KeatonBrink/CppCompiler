@@ -25,9 +25,12 @@ TokenClass ScannerClass::GetNextToken()
     {
         c = mFin.get();
         curMachineState = stateMachine.UpdateState(c, curTokenType);
+        // if (c != ' ' && c != '\n' && c != '\t')
         myLexeme.push_back(c);
     } while (curMachineState != CANTMOVE_STATE);
     myLexeme.pop_back();
+    // Not sure how this works, but it removes white space.
+    myLexeme.erase(remove_if(myLexeme.begin(), myLexeme.end(), isspace), myLexeme.end());
     mFin.unget();
     TokenClass curToken(curTokenType, myLexeme);
     curToken.CheckReserved();
