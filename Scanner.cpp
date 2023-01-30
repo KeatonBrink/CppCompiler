@@ -6,6 +6,7 @@ ScannerClass::ScannerClass(std::string &inputFileName)
     if (!mFin)
     {
         std::cout << "error opening file" << std::endl;
+        std::exit(1);
     }
 }
 
@@ -25,16 +26,22 @@ TokenClass ScannerClass::GetNextToken()
     {
         c = mFin.get();
         curMachineState = stateMachine.UpdateState(c, curTokenType);
-        // if (c != ' ' && c != '\n' && c != '\t')
         myLexeme.push_back(c);
+        if (curMachineState == START_STATE || curMachineState == EOF_STATE)
+        {
+            myLexeme = "";
+        }
     } while (curMachineState != CANTMOVE_STATE);
     myLexeme.pop_back();
     // Not sure how this works, but it removes white space.
-    myLexeme.erase(remove_if(myLexeme.begin(), myLexeme.end(), isspace), myLexeme.end());
+    // myLexeme.erase(remove_if(myLexeme.begin(), myLexeme.end(), isspace), myLexeme.end());
     mFin.unget();
     TokenClass curToken(curTokenType, myLexeme);
     curToken.CheckReserved();
     if (curTokenType == BAD_TOKEN)
+    {
         std::cout << "That is a bad token: " << myLexeme << std::endl;
+        std::exit(1);
+    }
     return curToken;
 }

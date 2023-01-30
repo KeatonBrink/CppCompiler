@@ -41,6 +41,6 @@ void TokenClass::CheckReserved()
 
 std::ostream &operator<<(std::ostream &out, const TokenClass &tc)
 {
-    out << tc.GetTokenTypeName() << " " << tc.GetLexeme();
+    out << tc.GetTokenType() << " " << tc.GetTokenTypeName() << " " << tc.GetLexeme();
     return out;
 }
