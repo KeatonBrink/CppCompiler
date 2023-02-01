@@ -15,6 +15,7 @@ StateMachineClass::StateMachineClass()
     // ******How do I handle "!"?
     // STARTSTATE
     mLegalMoves[START_STATE][WHITESPACE_CHAR] = START_STATE;
+    mLegalMoves[START_STATE][RETURN_CHAR] = START_STATE;
     mLegalMoves[START_STATE][DIGIT_CHAR] = INTEGER_STATE;
     mLegalMoves[START_STATE][LETTER_CHAR] = IDENTIFIER_STATE;
     mLegalMoves[START_STATE][PLUS_CHAR] = PLUS_STATE;
@@ -52,6 +53,33 @@ StateMachineClass::StateMachineClass()
 
     // ASSIGNMENT_STATE
     mLegalMoves[ASSIGNMENT_STATE][ASSIGNMENT_CHAR] = EQUAL_STATE;
+
+    // DIVIDE_STATE
+    mLegalMoves[DIVIDE_STATE][TIMES_CHAR] = BLOCKCOMMENT_STATE;
+    mLegalMoves[DIVIDE_STATE][DIVIDE_CHAR] = LINECOMMENT_STATE;
+
+    // BLOCKCOMMENT_STATE
+    for (int curChar = 0; curChar < LAST_CHAR; curChar++)
+    {
+        mLegalMoves[BLOCKCOMMENT_STATE][curChar] = BLOCKCOMMENT_STATE;
+    }
+    mLegalMoves[BLOCKCOMMENT_STATE][TIMES_CHAR] = EBLOCKCOMMENT_STATE;
+
+    // EBLOCKCOMMENT_STATE
+    for (int curChar = 0; curChar < LAST_CHAR; curChar++)
+    {
+        mLegalMoves[EBLOCKCOMMENT_STATE][curChar] = BLOCKCOMMENT_STATE;
+    }
+    mLegalMoves[EBLOCKCOMMENT_STATE][TIMES_CHAR] = EBLOCKCOMMENT_STATE;
+    mLegalMoves[EBLOCKCOMMENT_STATE][DIVIDE_CHAR] = START_STATE;
+
+    // LINECOMMENT_STATE
+    for (int curChar = 0; curChar < LAST_CHAR; curChar++)
+    {
+        mLegalMoves[LINECOMMENT_STATE][curChar] = LINECOMMENT_STATE;
+    }
+    mLegalMoves[LINECOMMENT_STATE][RETURN_CHAR] = START_STATE;
+    mLegalMoves[LINECOMMENT_STATE][EOF_CHAR] = EOF_STATE;
 
     // Initialize mCorrespondingTokenTypes
     for (int i = 0; i < LAST_STATE; i++)
@@ -91,7 +119,9 @@ MachineState StateMachineClass::UpdateState(char currentCharacter, TokenType &
         charType = DIGIT_CHAR;
     if (isalpha(currentCharacter))
         charType = LETTER_CHAR;
-    if (isspace(currentCharacter))
+    if (currentCharacter == '\n')
+        charType = RETURN_CHAR;
+    if (isspace(currentCharacter) && currentCharacter != '\n')
         charType = WHITESPACE_CHAR;
     if (currentCharacter == '+')
         charType = PLUS_CHAR;

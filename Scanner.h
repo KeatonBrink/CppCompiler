@@ -1,4 +1,5 @@
 #pragma once
+#include "Debug.h"
 #include "Token.h"
 #include "StateMachine.h"
 #include <fstream>
@@ -12,7 +13,9 @@ public:
     ScannerClass(std::string &inputFileName);
     ~ScannerClass();
     TokenClass GetNextToken();
+    int GetLineNumber() { return mLineNumber; }
 
 private:
     std::ifstream mFin;
+    int mLineNumber;
 };
