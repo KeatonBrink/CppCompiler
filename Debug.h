@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-#define ShowMesages 0
+#define ShowMesages 1
 #if ShowMesages
 #define MSG(X) std::cout << X << std::endl;
 #else

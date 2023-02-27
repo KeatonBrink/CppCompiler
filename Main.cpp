@@ -1,18 +1,52 @@
 #include "Scanner.h"
 #include "Debug.h"
 #include "Symbol.h"
+#include "Node.h"
 
 void testScanner();
 
 void testSymbolTable();
 
+void testNodes();
+
 int main()
 {
-    std::cout << "Scanner test" << std::endl;
-    testScanner();
-    std::cout << "Symbol Table test" << std::endl;
-    testSymbolTable();
+    // std::cout << "Scanner test" << std::endl;
+    // testScanner();
+    // std::cout << "Symbol Table test" << std::endl;
+    // testSymbolTable();
+    testNodes();
     return 0;
+}
+
+void testNodes()
+{
+    SymbolTableClass symbols;
+
+    IdentifierNode *id1 = new IdentifierNode("sum", &symbols);
+    DeclarationStatementNode *dsn = new DeclarationStatementNode(id1);
+
+    IdentifierNode *id2 = new IdentifierNode("plus", &symbols);
+    IntegerNode *in1 = new IntegerNode(35);
+    IntegerNode *in2 = new IntegerNode(400);
+    PlusNode *plus = new PlusNode(in1, in2);
+    AssignmentStatementNode *asn = new AssignmentStatementNode(id2, plus);
+
+    IdentifierNode *id3 = new IdentifierNode("cout", &symbols);
+    CoutStatementNode *csn = new CoutStatementNode(id3);
+
+    StatementGroupNode *sgn = new StatementGroupNode;
+    sgn->AddStatement(dsn);
+    sgn->AddStatement(asn);
+    sgn->AddStatement(csn);
+
+    BlockNode *bn = new BlockNode(sgn);
+
+    ProgramNode *pn = new ProgramNode(bn);
+
+    StartNode *sn = new StartNode(pn);
+
+    delete sn;
 }
 
 void testScanner()
