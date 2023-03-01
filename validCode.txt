@@ -1,0 +1,8 @@
+void main()
+{ /* Hey there 
+ I am still here*/
+	int sum;
+	// This finds the sum of 35 and 400
+	sum = 35 + 400;
+	cout << sum;
+}

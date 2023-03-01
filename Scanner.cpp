@@ -48,5 +48,18 @@ TokenClass ScannerClass::GetNextToken()
         std::cout << "That is a bad token: " << myLexeme << std::endl;
         std::exit(1);
     }
+    MSG(curToken);
     return curToken;
+}
+
+TokenClass ScannerClass::PeekNextToken()
+{
+    int preservedPos = mFin.tellg();
+    int preservedLine = GetLineNumber();
+    TokenClass retToken = GetNextToken();
+    if (!mFin)        // if we triggered EOF, then seekg doesn't work,
+        mFin.clear(); // unless we first clear()
+    mFin.seekg(preservedLine);
+    mLineNumber = preservedLine;
+    return retToken;
 }

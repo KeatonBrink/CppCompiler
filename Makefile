@@ -6,8 +6,11 @@ CXXFLAGS := $(CXXFLAGS) -Wall -Wpedantic -Wextra -Werror
 
 all: testTok mainTest
 
-mainTest: Main.o Scanner.o Token.o StateMachine.o Symbol.o Node.o
-	g++ $(CXXFLAGS) -o mainTest Main.o Scanner.o Token.o StateMachine.o Symbol.o Node.o
+mainTest: Main.o Scanner.o Token.o StateMachine.o Symbol.o Node.o Parser.o
+	g++ $(CXXFLAGS) -o mainTest Main.o Scanner.o Token.o StateMachine.o Symbol.o Node.o Parser.o
+
+Parser.o: Parser.cpp Parser.h
+	g++ $(CXXFLAGS) -c Parser.cpp
 
 Node.o: Node.cpp Node.h
 	g++ $(CXXFLAGS) -c Node.cpp

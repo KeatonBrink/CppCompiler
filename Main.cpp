@@ -2,6 +2,7 @@
 #include "Debug.h"
 #include "Symbol.h"
 #include "Node.h"
+#include "Parser.h"
 
 void testScanner();
 
@@ -9,13 +10,16 @@ void testSymbolTable();
 
 void testNodes();
 
+void testParserWithNoOutput();
+
 int main()
 {
     // std::cout << "Scanner test" << std::endl;
     // testScanner();
     // std::cout << "Symbol Table test" << std::endl;
     // testSymbolTable();
-    testNodes();
+    // testNodes();
+    testParserWithNoOutput();
     return 0;
 }
 
@@ -85,4 +89,12 @@ void testSymbolTable()
 
     // Final test output if all works
     std::cout << "Made it through tests" << std::endl;
+}
+
+void testParserWithNoOutput()
+{
+    std::string filename = "validCode.txt";
+    ScannerClass myScanner(filename);
+    SymbolTableClass mySymbolTable;
+    ParserClass myParser(&myScanner, &mySymbolTable);
 }
