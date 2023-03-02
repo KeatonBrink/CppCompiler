@@ -59,7 +59,7 @@ TokenClass ScannerClass::PeekNextToken()
     TokenClass retToken = GetNextToken();
     if (!mFin)        // if we triggered EOF, then seekg doesn't work,
         mFin.clear(); // unless we first clear()
-    mFin.seekg(preservedLine);
+    mFin.seekg(preservedPos);
     mLineNumber = preservedLine;
     return retToken;
 }

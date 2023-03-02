@@ -97,4 +97,5 @@ void testParserWithNoOutput()
     ScannerClass myScanner(filename);
     SymbolTableClass mySymbolTable;
     ParserClass myParser(&myScanner, &mySymbolTable);
+    myParser.Start();
 }

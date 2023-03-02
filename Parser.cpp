@@ -18,8 +18,9 @@ void ParserClass::Program()
 }
 void ParserClass::Block()
 {
-    Match(LPAREN_TOKEN);
+    Match(LCURLY_TOKEN);
     StatementGroup();
+    Match(RCURLY_TOKEN);
 }
 void ParserClass::StatementGroup()
 {

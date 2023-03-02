@@ -9,8 +9,8 @@ class Node;
 class StartNode;
 class ProgramNode;
 class StatementGroupNode;
-class BlockNode;
 class StatementNode;
+class BlockNode;
 class DeclarationStatementNode;
 class IdentifierNode;
 class AssignmentStatementNode;
@@ -44,16 +44,9 @@ private:
     BlockNode *mBlockNode;
 };
 
-class StatementGroupNode : public Node
+class StatementNode : public Node
 {
-public:
-    ~StatementGroupNode();
-    void AddStatement(StatementNode *pStatementNode);
-
-private:
-    std::vector<StatementNode *> mStatementNodes;
 };
-
 class BlockNode : public StatementNode
 {
 public:
@@ -64,8 +57,14 @@ private:
     StatementGroupNode *mStatementGroupNode;
 };
 
-class StatementNode : public Node
+class StatementGroupNode : public Node
 {
+public:
+    ~StatementGroupNode();
+    void AddStatement(StatementNode *pStatementNode);
+
+private:
+    std::vector<StatementNode *> mStatementNodes;
 };
 
 class DeclarationStatementNode : public StatementNode
