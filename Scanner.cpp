@@ -48,7 +48,7 @@ TokenClass ScannerClass::GetNextToken()
         std::cout << "That is a bad token: " << myLexeme << std::endl;
         std::exit(1);
     }
-    MSG(curToken);
+    // MSG(curToken);
     return curToken;
 }
 

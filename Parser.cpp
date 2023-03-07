@@ -170,6 +170,7 @@ void ParserClass::Integer() { Match(INTEGER_TOKEN); }
 TokenClass ParserClass::Match(TokenType expectedType)
 {
     TokenClass currentToken = mScanner->GetNextToken();
+    MSG(currentToken);
     if (currentToken.GetTokenType() != expectedType)
     {
         std::cerr << "Error in ParserClass::Match. " << std::endl;
