@@ -12,6 +12,8 @@ void testNodes();
 
 void testParserWithNoOutput();
 
+void testParserWithOutput();
+
 int main()
 {
     // std::cout << "Scanner test" << std::endl;
@@ -19,7 +21,8 @@ int main()
     // std::cout << "Symbol Table test" << std::endl;
     // testSymbolTable();
     // testNodes();
-    testParserWithNoOutput();
+    // testParserWithNoOutput();
+    testParserWithOutput();
     return 0;
 }
 
@@ -98,4 +101,14 @@ void testParserWithNoOutput()
     SymbolTableClass mySymbolTable;
     ParserClass myParser(&myScanner, &mySymbolTable);
     myParser.Start();
+}
+
+void testParserWithOutput()
+{
+    std::string filename = "validCode.txt";
+    ScannerClass myScanner(filename);
+    SymbolTableClass mySymbolTable;
+    ParserClass myParser(&myScanner, &mySymbolTable);
+    StartNode *sn = myParser.Start();
+    delete sn;
 }

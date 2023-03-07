@@ -2,33 +2,31 @@
 
 #include "Scanner.h"
 #include "Symbol.h"
+#include "Node.h"
 
 class ParserClass
 {
 public:
     ParserClass(ScannerClass *so, SymbolTableClass *sto);
-    void Start();
+    StartNode *Start();
 
 private:
-    void Program();
-    void Block();
-    void StatementGroup();
-    void DeclarationStatement();
-    void AssignmentStatement();
-    void CoutStatement();
-    void Expression();
-    void Relational();
-    void PlusMinus();
+    ProgramNode *Program();
+    BlockNode *Block();
+    StatementGroupNode *StatementGroup();
+    DeclarationStatementNode *DeclarationStatement();
+    AssignmentStatementNode *AssignmentStatement();
+    CoutStatementNode *CoutStatement();
+    ExpressionNode *Expression();
+    ExpressionNode *Relational();
+    ExpressionNode *PlusMinus();
     // I now see how the tails in the textbooka are intended to be
     // an extension of the base function.  I did not do this, and
     // I may have to revisit it sometime
-    void RelationalTail();
-    void TimesDivide();
-    void PlusMinusTail();
-    void Factor();
-    void TimesDivideTail();
-    void Identifier();
-    void Integer();
+    ExpressionNode *TimesDivide();
+    ExpressionNode *Factor();
+    IdentifierNode *Identifier();
+    IntegerNode *Integer();
 
     TokenClass Match(TokenType matchTok);
 
