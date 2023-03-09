@@ -60,6 +60,7 @@ private:
 class StatementGroupNode : public Node
 {
 public:
+    StatementGroupNode() { MSG("Making Statement Group Node"); }
     ~StatementGroupNode();
     void AddStatement(StatementNode *pStatementNode);
 
@@ -147,6 +148,7 @@ class PlusNode : public BinaryOperatorNode
 {
 public:
     PlusNode(ExpressionNode *left, ExpressionNode *right);
+    ~PlusNode() { MSG("Deleting Plus Node"); }
     int Evaluate();
 };
 
@@ -154,6 +156,7 @@ class MinusNode : public BinaryOperatorNode
 {
 public:
     MinusNode(ExpressionNode *left, ExpressionNode *right);
+    ~MinusNode() { MSG("Deleting Minus Node"); }
     int Evaluate();
 };
 
@@ -161,6 +164,7 @@ class TimesNode : public BinaryOperatorNode
 {
 public:
     TimesNode(ExpressionNode *left, ExpressionNode *right);
+    ~TimesNode() { MSG("Deleting Times Node"); }
     int Evaluate();
 };
 
@@ -168,6 +172,7 @@ class DivideNode : public BinaryOperatorNode
 {
 public:
     DivideNode(ExpressionNode *left, ExpressionNode *right);
+    ~DivideNode() { MSG("Deleting Divide Node"); }
     int Evaluate();
 };
 
@@ -175,6 +180,7 @@ class LessNode : public BinaryOperatorNode
 {
 public:
     LessNode(ExpressionNode *left, ExpressionNode *right);
+    ~LessNode() { MSG("Deleting Less Node"); }
     int Evaluate();
 };
 
@@ -182,6 +188,7 @@ class LessEqualNode : public BinaryOperatorNode
 {
 public:
     LessEqualNode(ExpressionNode *left, ExpressionNode *right);
+    ~LessEqualNode() { MSG("Deleting Less Equal Node"); }
     int Evaluate();
 };
 
@@ -189,6 +196,7 @@ class GreaterNode : public BinaryOperatorNode
 {
 public:
     GreaterNode(ExpressionNode *left, ExpressionNode *right);
+    ~GreaterNode() { MSG("Deleting Greater Node"); }
     int Evaluate();
 };
 
@@ -196,6 +204,7 @@ class GreaterEqualNode : public BinaryOperatorNode
 {
 public:
     GreaterEqualNode(ExpressionNode *left, ExpressionNode *right);
+    ~GreaterEqualNode() { MSG("Deleting Greater Equal Node"); }
     int Evaluate();
 };
 
@@ -203,6 +212,7 @@ class EqualNode : public BinaryOperatorNode
 {
 public:
     EqualNode(ExpressionNode *left, ExpressionNode *right);
+    ~EqualNode() { MSG("Deleting Equal Node"); }
     int Evaluate();
 };
 
@@ -210,5 +220,6 @@ class NotEqualNode : public BinaryOperatorNode
 {
 public:
     NotEqualNode(ExpressionNode *left, ExpressionNode *right);
+    ~NotEqualNode() { MSG("Deleting Equal Node"); }
     int Evaluate();
 };

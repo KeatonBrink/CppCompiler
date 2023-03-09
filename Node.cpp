@@ -2,7 +2,7 @@
 
 Node::~Node() {}
 
-StartNode::StartNode(ProgramNode *pProgramNode) : mProgramNode(pProgramNode) { MSG("Making StartNode"); }
+StartNode::StartNode(ProgramNode *pProgramNode) : mProgramNode(pProgramNode) { MSG("Making Start Node"); }
 StartNode::~StartNode()
 {
     MSG("Deleting Start Node");
@@ -93,10 +93,7 @@ BinaryOperatorNode::~BinaryOperatorNode()
     delete mRightPENode;
 }
 
-PlusNode::PlusNode(ExpressionNode *left, ExpressionNode *right) : BinaryOperatorNode(left, right)
-{
-    MSG("Making PlusNode");
-}
+PlusNode::PlusNode(ExpressionNode *left, ExpressionNode *right) : BinaryOperatorNode(left, right) {}
 
 int PlusNode::Evaluate()
 {
